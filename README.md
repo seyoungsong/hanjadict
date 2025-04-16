@@ -2,7 +2,7 @@
 
 [![PyPI version](https://img.shields.io/pypi/v/hanjadict.svg)](https://pypi.org/project/hanjadict/)
 [![Python Versions](https://img.shields.io/pypi/pyversions/hanjadict.svg)](https://pypi.org/project/hanjadict/)
-[![License](https://img.shields.io/github/license/seyoungsong/hanjadict.svg)](https://github.com/seyoungsong/hanjadict/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/seyoungsong/hanjadict.svg)](https://github.com/seyoungsong/hanjadict/blob/master/LICENSE)
 [![Downloads](https://static.pepy.tech/badge/hanjadict)](https://pepy.tech/project/hanjadict)
 
 ## Installation
