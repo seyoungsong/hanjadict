@@ -1,0 +1,16 @@
+version: "3"
+
+tasks:
+  fl:
+    desc: format and lint
+    cmds:
+      - ruff format ./src
+      - ruff check --fix ./src || true
+      - isort ./src
+      - ruff format ./src
+      - mypy ./src
+
+  test:
+    desc: run tests
+    cmds:
+      - pytest -v
