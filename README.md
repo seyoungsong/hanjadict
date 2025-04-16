@@ -5,6 +5,8 @@
 [![License](https://img.shields.io/github/license/seyoungsong/hanjadict.svg)](https://github.com/seyoungsong/hanjadict/blob/master/LICENSE)
 [![Downloads](https://static.pepy.tech/badge/hanjadict)](https://pepy.tech/project/hanjadict)
 
+A lightweight Python package for looking up Hanja (Chinese characters used in Korea) information, specifically focusing on 훈음 (hun-eum).
+
 ## Installation
 
 ```sh
