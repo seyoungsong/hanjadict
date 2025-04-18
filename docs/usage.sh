@@ -1,5 +1,6 @@
 # check
 python3 docs/concat.py
+code temp.txt
 
 # install
 python3 -m pip install --upgrade twine

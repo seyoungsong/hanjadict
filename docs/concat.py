@@ -16,6 +16,7 @@ def collect_files(
             "__pycache__",
             "table.json",
             "concat.py",
+            "LICENSE",
         ]
 
     # Use a set to avoid duplicates
