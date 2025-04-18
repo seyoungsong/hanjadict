@@ -26,6 +26,6 @@ def pronunciation(c: str) -> Optional[str]:
 
     # For entries with parentheses: "영양 령(영)" -> "령"
     if "(" in hun_eum:
-        hun_eum = hun_eum.split("(")[0].split()
+        hun_eum = hun_eum.split("(")[0].strip()
 
     return hun_eum[-1] if hun_eum else None
