@@ -21,7 +21,11 @@ def __dev__():
 
     idx = df["hj"].isin(df1["hj"]) | df["hj"].isin(df2["hj"]) | df["hj"].isin(df3["hj"])
     df_etc = df[~idx].reset_index(drop=True)
-    d1 = df_etc.to_dict(orient="records")
+    df_hmm = df[idx].reset_index(drop=True)
+
+    df_sample = pd.concat([df_etc.sample(10), df_hmm.sample(40)]).reset_index(drop=True)
+    df_sample.sort_values("hj", inplace=True)
+    d1 = df_sample.set_index("hj")["ko"].to_dict()
     Path("temp.json").write_text(
         json.dumps(d1, ensure_ascii=False, indent=2), encoding="utf-8"
     )
