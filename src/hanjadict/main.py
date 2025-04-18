@@ -16,34 +16,19 @@ def pronunciation(c: str) -> Optional[str]:
     if hun_eum is None:
         return None
 
-    # Handle different formats
+    # First check for entries with commas: "샘솟을 집, 샘솟을 설" -> "집"
+    if "," in hun_eum:
+        hun_eum = hun_eum.split(",")[0].strip()
+
     # For entries with slash: "제비 연/잔치 연" -> "연"
     if "/" in hun_eum:
-        # Get the first pronunciation after the slash
-        parts = hun_eum.split("/")
-        first_part = parts[0].strip()
-        words = first_part.split()
-        if len(words) > 1:
-            return words[-1]
-        else:
-            # Handle edge cases where format is different
-            return parts[0].strip()
-
-    # For normal entries: "눈 설" -> "설"
-    words = hun_eum.split()
-    if len(words) >= 2:
-        # The last word is usually the pronunciation
-        return words[-1]
+        hun_eum = hun_eum.split("/")[0].strip()
 
     # For entries with parentheses: "영양 령(영)" -> "령"
     if "(" in hun_eum:
-        words = hun_eum.split()
-        for word in words:
-            if "(" in word:
-                return word.split("(")[0]
+        hun_eum = hun_eum.split("(")[0].split()
 
-    # If we can't determine the pronunciation, return the whole string
-    return hun_eum
+    return hun_eum["-1"]
 
 
 def __dev__():
