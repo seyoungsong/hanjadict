@@ -1,4 +1,4 @@
-import hanjadict
+from src import hanjadict
 
 
 def test_lookup_valid_character():

@@ -28,7 +28,7 @@ def pronunciation(c: str) -> Optional[str]:
     if "(" in hun_eum:
         hun_eum = hun_eum.split("(")[0].split()
 
-    return hun_eum["-1"]
+    return hun_eum[-1] if hun_eum else None
 
 
 def __dev__():
