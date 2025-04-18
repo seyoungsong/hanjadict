@@ -11,8 +11,8 @@ def is_hanja(c: str) -> bool:
     return c in table_data
 
 
-def pronunciation(ch: str) -> Optional[str]:
-    hun_eum = lookup(ch)
+def pronunciation(c: str) -> Optional[str]:
+    hun_eum = lookup(c)
     if hun_eum is None:
         return None
 
