@@ -1,12 +1,11 @@
-from src.hanjadict.main import pronunciation
-from src.hanjadict.table import table_data
-
-
 def __dev__():
     import json
     from pathlib import Path
 
     import pandas as pd
+
+    from src.hanjadict.main import pronunciation
+    from src.hanjadict.table import table_data
 
     df = pd.DataFrame(table_data.items(), columns=["hj", "ko"])
 
