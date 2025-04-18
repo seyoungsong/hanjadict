@@ -1,6 +1,62 @@
 from src import hanjadict
 
 
+def test_all_pronunciations():
+    """Test pronunciation extraction for all characters in table_data."""
+    failures = []
+
+    for char, hun_eum in hanjadict.table_data.items():
+        pron = hanjadict.pronunciation(char)
+
+        # Check that pronunciation is not None
+        if pron is None:
+            failures.append(
+                f"Character '{char}' ({hun_eum}) returned None for pronunciation"
+            )
+            continue
+
+        # Basic validation: pronunciation should be at least 1 character
+        if len(pron) < 1:
+            failures.append(
+                f"Character '{char}' ({hun_eum}) returned empty pronunciation: '{pron}'"
+            )
+            continue
+
+        # Check that pronunciation is actually the last character in the hun_eum
+        # (after handling special formats)
+
+        # Handle comma-separated entries
+        processed_hun_eum = hun_eum
+        if "," in processed_hun_eum:
+            processed_hun_eum = processed_hun_eum.split(",")[0].strip()
+
+        # Handle slash-separated entries
+        if "/" in processed_hun_eum:
+            processed_hun_eum = processed_hun_eum.split("/")[0].strip()
+
+        # Handle parentheses
+        if "(" in processed_hun_eum:
+            processed_hun_eum = processed_hun_eum.split("(")[0].strip()
+
+        expected_pron = processed_hun_eum[-1] if processed_hun_eum else None
+
+        if pron != expected_pron:
+            failures.append(
+                f"Character '{char}' ({hun_eum}): expected '{expected_pron}', got '{pron}'"
+            )
+
+    # If there are any failures, fail the test with details
+    assert not failures, (
+        f"Pronunciation failures ({len(failures)}):\n"
+        + "\n".join(failures[:20])
+        + (
+            f"\n... and {len(failures) - 20} more failures"
+            if len(failures) > 20
+            else ""
+        )
+    )
+
+
 def test_lookup_valid_character():
     """Test lookup with valid Hanja character."""
     result = hanjadict.lookup("雪")
