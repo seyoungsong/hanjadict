@@ -53,3 +53,7 @@ def __dev__():
     Path("temp.json").write_text(
         json.dumps(d1, ensure_ascii=False, indent=2), encoding="utf-8"
     )
+
+    # pron test
+    df["pron"] = df["hj"].apply(pronunciation)
+    df["pron"].isna().sum()
