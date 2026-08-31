@@ -203,3 +203,6 @@ Temporary Items
 # Me
 temp.*
 .claude
+
+# Dictionary data (not distributed; see README)
+src/hanjadict/table.json

@@ -1,6 +1,13 @@
+import pytest
+
 from src import hanjadict
 
+requires_data = pytest.mark.skipif(
+    not hanjadict.table_data, reason="dictionary data (table.json) not present"
+)
 
+
+@requires_data
 def test_lookup():
     assert hanjadict.lookup("雪") == "눈 설"
     assert hanjadict.lookup("山") == "메 산"
@@ -8,12 +15,14 @@ def test_lookup():
     assert hanjadict.lookup("") is None
 
 
+@requires_data
 def test_is_hanja():
     assert hanjadict.is_hanja("雪") is True
     assert hanjadict.is_hanja("한글") is False
     assert hanjadict.is_hanja("") is False
 
 
+@requires_data
 def test_pronunciation_formats():
     # Normal format
     assert hanjadict.pronunciation("雪") == "설"  # 눈 설
@@ -32,6 +41,7 @@ def test_pronunciation_formats():
     assert hanjadict.pronunciation("") is None
 
 
+@requires_data
 def test_all_pronunciations():
     failures = []
 

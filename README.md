@@ -33,22 +33,48 @@ pron = hanjadict.pronunciation("雪")
 print(pron)
 # Output: '설'
 
-# Access the raw dictionary data
+# Access the raw dictionary data (a plain dict: character -> 훈음)
 raw_data = hanjadict.table_data
 print(len(raw_data))
-# Output: 53458
 
 # If the character is not found, returns None
 result = hanjadict.lookup("xyz")
 print(result)  # Output: None
 ```
 
+## Dictionary data
+
+**This package does not ship dictionary data.** Only the lookup code is
+distributed; you supply your own `table.json`, a UTF-8 JSON object mapping a
+single Hanja character to its 훈음 string:
+
+```json
+{
+  "雪": "눈 설",
+  "山": "메 산",
+  "燕": "제비 연/잔치 연"
+}
+```
+
+`hanjadict` looks for the data in this order:
+
+1. The path in the `HANJADICT_TABLE` environment variable
+2. `table.json` inside the installed `hanjadict` package directory
+
+If neither is found, `table_data` is an empty dict and every lookup returns
+`None` / `False`.
+
+Sources you can legally redistribute and convert into this format include
+Unicode's [Unihan database](https://www.unicode.org/reports/tr38/) (`kHangul`,
+Unicode License) and [libhangul](https://github.com/libhangul/libhangul)'s
+`hanja.txt` (LGPL). Check each source's license before redistributing a
+`table.json` built from it.
+
 ## Features
 
-- Fast lookups using a pre-compiled [dictionary](./src/hanjadict/table.json)
 - Simple API with intuitive functions
-- Comprehensive dictionary of 53,458 characters
 - Lightweight with no external dependencies
+- Bring-your-own dictionary data (see above)
 - Access to raw dictionary data for advanced usage
 
 ## Available Functions
@@ -75,3 +101,10 @@ The `pronunciation()` function can handle various dictionary formats:
 - Comma-separated: "샘솟을 집, 샘솟을 설" → returns "집"
 - Slash-separated: "제비 연/잔치 연" → returns "연"
 - Parentheses: "영양 령(영)" → returns "령"
+
+## License
+
+The MIT License in this repository applies **only to the source code**. No
+license is granted to any third-party dictionary content or data. Any
+`table.json` you use with this package is governed by the license of its own
+source.
